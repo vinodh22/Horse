@@ -21,9 +21,9 @@ race_id		tinyint(3)	Yes
 2)horse
 
 Field			Type		Null
-id				int(11)		No 	
+id			int(11)		No 	
 horse_name		varchar(255)	
-horse_number	tinyint(3)	Yes 
+horse_number		tinyint(3)	Yes 
 
 ============================================================
 3)person
