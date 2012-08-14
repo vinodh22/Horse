@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<head>
+<title>
+Person Entry
+</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(function() {
+		$( "#dob" ).datepicker({ changeYear: true, maxDate: "-18y",yearRange: "1950"});
+	});
+});
+</script>
+<form action="person.php" method="post" id="entryForm">
+
+<div id="container"><table>
+<tr><td>Name : </td><td><input type="text" name="name"></td></tr>
+<tr><td>D.O.B : </td><td><input type="text" name="age" id="dob"></td></tr>
+<tr><td>Contact Number : </td><td><input type="text" name="num"></td></tr>
+</table><div>
+<table><tr>
+<td><h4>Sex :</h4></td>
+<td>Male<input type="radio" name="sex" id="M" value="M"/></td>
+<td>Female<input type="radio" name="sex" id="F" value="F"/></td></tr>
+</table>
+</div>
+<div><table><tr>
+<td><h4>Address :</h4></td>
+</tr>
+<tr><td>Address1: </td><td><input type="text" name="addr1"></td>
+<td>Address2: </td><td><input type="text" name="addr2"></td></tr>
+<tr><td>City </td><td><input type="text" name="city"></td>
+<td>Pin: </td><td><input type="text" name="pin"></td></tr>
+<tr><td>State: </td><td><input type="text" name="state"></td>
+<td>Nationality: </td><td><input type="text" name="nation"></td></tr>
+</table>
+</div>
+<table>
+<tr><td><input type="submit" id="btn" value="Done !"></tr>
+</table>
+</div>
+</form>
+
+</body>
+</html>
