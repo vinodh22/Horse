@@ -10,7 +10,7 @@ I.Table Structure:
 1)bait
 
 Field		Type		Null
-id			int(11)		No 	 	 	 
+id		int(11)		No 	 	 	 
 odds		double		Yes
 bait_amount	int(11)		Yes
 member_id	tinyint(3)	Yes
