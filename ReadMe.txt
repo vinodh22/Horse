@@ -11,45 +11,45 @@ I.Table Structure:
 
 Field		Type		Null
 id		int(11)		No 	 	 	 
-odds		double		Yes
-bait_amount	int(11)		Yes
-member_id	tinyint(3)	Yes
-horse_id	tinyint(3)	Yes
-race_id		tinyint(3)	Yes
+odds		double		No
+bait_amount	int(11)		No
+member_id	tinyint(3)	No
+horse_id	tinyint(3)	No
+race_id		tinyint(3)	No
 
 ============================================================
 2)horse
 
 Field		Type		Null
 id		int(11)		No 	
-horse_name	varchar(255)	
-horse_number	tinyint(3)	Yes 
+horse_name	varchar(255)	No
+horse_number	tinyint(3)	No 
 
 ============================================================
 3)person
 
-Field		Type			Null
-id		int(11)			No 	
-name		varchar(255)	Yes
-age		varchar(255)	Yes
-sex		varchar(255)	Yes
-contact_number	double			Yes
-addr1		varchar(255)	Yes
-addr2		varchar(255)	Yes
-city		varchar(255)	Yes
-pin		varchar(255)	Yes
-state		varchar(255)	Yes
-nationality	varchar(255)	Yes
+Field		Type		Null
+id		int(11)		No 	
+name		varchar(255)	No
+age		varchar(255)	No
+sex		varchar(255)	No
+contact_number	double		No
+addr1		varchar(255)	No
+addr2		varchar(255)	No
+city		varchar(255)	No
+pin		varchar(255)	No
+state		varchar(255)	No
+nationality	varchar(255)	No
 
 ============================================================
 4)race
 
-Field		Type			Null
-id				int(11)			No 
-racing_number	tinyint(3)		Yes
-racing_time	tinyint(3)		Yes
-racing_date	varchar(255)	Yes
-duration	tinyint(3)		Yes
+Field		Type		Null
+id			int(11)		No 
+racing_number	tinyint(3)	No
+racing_time	tinyint(3)	No
+racing_date	varchar(255)No
+duration	tinyint(3)	No
 
 ************************************************************
 II.External dependencies
