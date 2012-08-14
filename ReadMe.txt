@@ -45,7 +45,7 @@ nationality	varchar(255)	No
 4)race
 
 Field		Type		Null
-id			int(11)		No 
+id		int(11)		No 
 racing_number	tinyint(3)	No
 racing_time	tinyint(3)	No
 racing_date	varchar(255)No
