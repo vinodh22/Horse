@@ -48,7 +48,7 @@ Field		Type		Null
 id		int(11)		No 
 racing_number	tinyint(3)	No
 racing_time	tinyint(3)	No
-racing_date	varchar(255)No
+racing_date	varchar(255)	No
 duration	tinyint(3)	No
 
 ************************************************************
