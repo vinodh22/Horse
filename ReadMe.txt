@@ -60,7 +60,7 @@ II.External dependencies
 	Include: <script src="mousetrap.min.js"></script>
 	
 	2.To achieve keyboard shortcuts in both Mac and Windows OS
-	Include: <script type="text/javascript" src="http://localhost/Horse/js/browserDetect.js"></script>
+	Include: <script type="text/javascript" src="browserDetect.js"></script>
 	
 	3.To achieve a fast and concise JavaScript
 	http://jquery.com/
