@@ -1,16 +1,19 @@
 <?php
 require('rb.php');
+require('config.php');
+R::setup(DB_TYPE.':host='.HOST.';dbname='.DB_NAME,USERNAME,PASSWORD); //MySQL
 $racing_number = $_POST['rnum'];
 $racing_time = $_POST['rtime'];
 $racing_date = $_POST['rdate'];
 $duration = $_POST['dura'];
-$tableName='race';
-R::setup('mysql:host=localhost;dbname=horserace','root',''); //MySQL
+/************************************************************\
+*this function stores the race details
+\************************************************************/
 if($racing_number!='') {
     if($racing_time!='') {
         if($racing_date!='') {
             if($duration!='') {
-                $horse = R::dispense( $tableName );	//Creating a table if not exists
+                $horse = R::dispense( RACE_TABLE);	//Creating a table if not exists
 				$horse->racing_number = $racing_number;
 				$horse->racing_time = $racing_time;
 				$horse->racing_date=$racing_date;

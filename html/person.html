@@ -3,20 +3,11 @@
 <title>
 Person Entry
 </title>
-<link href="style.css" rel="stylesheet" type="text/css">
-<link href="jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/Horse/css/style.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/Horse/css/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="jquery-ui-1.8.22.custom.min.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$(function() {
-		$( "#dob" ).datepicker({ changeYear: true, maxDate: "-18y",yearRange: "1950"});
-	});
-});
-</script>
-<form action="person.php" method="post" id="entryForm">
+<form action="http://localhost/Horse/person.php" method="post" id="entryForm">
 
 <div id="container"><table>
 <tr><td>Name : </td><td><input type="text" name="name"></td></tr>
@@ -45,6 +36,14 @@ $(document).ready(function(){
 </table>
 </div>
 </form>
-
+<script type="text/javascript" src="http://localhost/Horse/js/jquery.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(function() {
+		$( "#dob" ).datepicker({ changeYear: true, maxDate: "-18y",yearRange: "1950"});
+	});
+});
+</script>
 </body>
 </html>

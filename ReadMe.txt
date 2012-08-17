@@ -59,20 +59,35 @@ II.External dependencies
 	https://github.com/ccampbell/mousetrap
 	Include: <script src="mousetrap.min.js"></script>
 	
-	2.To achieve a fast and concise JavaScript
+	2.To achieve keyboard shortcuts in both Mac and Windows OS
+	Include: <script type="text/javascript" src="http://localhost/Horse/js/browserDetect.js"></script>
+	
+	3.To achieve a fast and concise JavaScript
 	http://jquery.com/
 	Include: <script type="text/javascript" src="jquery.js"></script>
 	
-	3.To achieve a popup window while baiting
+	4.To achieve a popup window while baiting
 	Include: <script type="text/javascript" src="popup.js"></script>
 	
-	4.Install php 5.3.1 or higher version.
+	5.To achieve a autocomplete while baiting
+	Include: <script type="text/javascript" src="jquery-ui-1.8.23.custom.min.js"></script>
+	
+	6.To achieve a UI calendar
+	Include: <script type="text/javascript" src="jquery.ui.autocomplete.js"></script>
+	
+	7.To use ORM
+	Include: require('rb.php');
+	
+	8.To use database
+	Include: require('config.php');
+	
+	9.Install php 5.3.1 or higher version.
 	http://php.net/downloads.php
 	
-	5.Install MySQL server 5.1.41 or higher version
+	10.Install MySQL server 5.1.41 or higher version
 	http://dev.mysql.com/downloads/
 	
-	6. Create a database in your local and name it as "horserace"
+	11. Create a database in your local and name it as "horserace"
 	
 ************************************************************
 III.Browser Compatibility

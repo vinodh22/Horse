@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<head>
+<title>
+Race Entry
+</title>
+<link href="http://localhost/Horse/css/style.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/Horse/css/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<form action="http://localhost/Horse/race.php" method="post" id="entryForm">
+<div id="container">
+<table>
+<tr>
+<td>Race number: </td><td><input type="text" name="rnum"></td>
+<td>Racing Time: </td><td><input type="text" name="rtime"></td>
+<td>Race Date: </td><td><input type="text" name="rdate" id="date"></td>
+<td>Duration: </td><td><input type="text" name="dura"></td>
+<td><input type="submit" id="btn" value="Done !"></td>
+</tr>
+</table>
+</div>
+</form>
+<script type="text/javascript" src="http://localhost/Horse/js/jquery.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(function() {
+		$( "#date" ).datepicker({dateFormat: "dd.mm.yy",maxDate: "+1y",minDate: new Date()});
+	});
+});
+</script>
+</body>
+</html>

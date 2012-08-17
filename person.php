@@ -1,9 +1,7 @@
 <?php
 require('rb.php');
-$tableName='person';
-R::setup('mysql:host=localhost;
-dbname=horserace','root','');
-//MySQL
+require('config.php');
+R::setup(DB_TYPE.':host='.HOST.';dbname='.DB_NAME,USERNAME,PASSWORD); //MySQL
 $name = $_POST['name'];
 $age = $_POST['age'];
 $sex = $_POST['sex'];
@@ -14,11 +12,11 @@ $city = $_POST['city'];
 $pin = $_POST['pin'];
 $state = $_POST['state'];
 $nationality = $_POST['nation'];
-store_member($tableName,$name,$age,$sex,$contact_number,$addr1,$addr2,$city,$pin,$state,$nationality);
+store_member($name,$age,$sex,$contact_number,$addr1,$addr2,$city,$pin,$state,$nationality);
 /************************************************************\
-*
+*this function stores the member details
 \************************************************************/
-function store_member($tableName,$name,$age,$sex,$contact_number,$addr1,$addr2,$city,$pin,$state,$nationality) {
+function store_member($name,$age,$sex,$contact_number,$addr1,$addr2,$city,$pin,$state,$nationality) {
     if($name!='') {
         if($age!='') {
             if(isset($sex)) {
@@ -28,7 +26,7 @@ function store_member($tableName,$name,$age,$sex,$contact_number,$addr1,$addr2,$
                             if($pin!='') {
                                 if($state!='') {
                                     if($nationality!='') {
-                                        $person = R::dispense( $tableName );	//Creating a table if not exists
+                                        $person = R::dispense( PERSON_TABLE );	//Creating a table if not exists
 										$person->name = $name;
 										$person->age = $age;
 										$person->sex=$sex;

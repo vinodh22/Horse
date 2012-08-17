@@ -23,6 +23,40 @@
 	background: rgba(255,0,0,0.4); 
 }
 
+.page-header {
+  padding-bottom: 17px;
+  margin: 18px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.page-header h1 {
+  line-height: 1;
+}
+#header,{
+  display: block;
+}
+#header {
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+}
+
+#header .close {
+  margin-top: 2px;
+}
+#header {
+  display: block;
+  padding: 3px 15px;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #999999;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+}
+
+#header {
+  margin-top: 9px;
+}
 body {
 font-size: 13px;	
 	}
@@ -49,7 +83,42 @@ h4 small{
   font-weight: normal;
   color: #999999;
 }
-
+#raceid,
+#racetime{
+		font-size: 20px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin:0px auto;
+		background-color:#006633;
+		right:10px;
+}
+#bookedmember{
+		font-size: 25px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin:0px auto;
+		background-color:#006633;
+		right:10px;
+}
+#bookeddetails{
+		width: auto;
+		height: auto;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin:0px auto;
+		margin-top:15px;
+		color: #585858 ;
+		background-color:#F5DEB3 ;
+		margin-bottom:5px;
+		margin-left:30px;
+		margin-right:30px;
+		
+}
+#bookeddetails:hover {
+  border-color: rgba(82, 168, 236, 0.8) ;
+  outline: 0;
+  outline: thin dotted \9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00FF00;
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00FF00;
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00FF00;
+}
 .customer {
 		font-size: 17px;
 		width:270px;
@@ -71,7 +140,7 @@ h4 small{
 		margin:0px auto;
 		float:left;
 		margin-top:20px;
-		margin-left:40px;
+		margin-left:30px;
 }
 
 .customer:hover {
@@ -90,22 +159,7 @@ h4 small{
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
 }
-.mob:hover{
-  border-color: rgba(82, 168, 236, 0.8);
-  outline: 0;
-  outline: thin dotted \9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-}
-.total:hover{
-  border-color: rgba(82, 168, 236, 0.8);
-  outline: 0;
-  outline: thin dotted \9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-}
+
 
 .text_line
 {
@@ -124,7 +178,7 @@ clear:both;
 .thumbnail {
 	font-size: 16px;
 	width:290px;
-		height:250px;
+		height:260px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		margin:0px auto;
 		float:left;
@@ -290,17 +344,28 @@ table {
   border-spacing: 0;
 }
 
-.table td {
-  padding: 8px;
-  line-height: 20px;
+table td {
+  padding: 6px;
+  width:50px;
+  line-height: 18px;
   text-align: left;
   vertical-align: top;
   border-top: 1px solid #dddddd;
 }
+span.mobin{
+  padding: 8px;
+  width:60px;
+  margin-left:8px;
+  line-height: 18px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+  background-color: #FFFAF0	;
+}
 
-.table tbody tr:hover td,
-.table tbody tr:hover th {
-  background-color: #f5f5f5;
+table tbody tr:hover td,
+span.profitloss  {
+  background-color: #F8F8F8;
 }
 
 .btn,
