@@ -10,16 +10,16 @@ $duration = $_POST['dura'];
 *this function stores the race details
 \************************************************************/
 if($racing_number!='') {
-    if($racing_time!='') {
+    if($racing_time!='' && $racing_time!='00:00') {
         if($racing_date!='') {
-            if($duration!='') {
+            if($duration!='' && $duration!='00:00') {
                 $horse = R::dispense( RACE_TABLE);	//Creating a table if not exists
 				$horse->racing_number = $racing_number;
 				$horse->racing_time = $racing_time;
 				$horse->racing_date=$racing_date;
 				$horse->duration=$duration;
 				$id = R::store($horse);
-				echo 'Successfully Created';
+				echo 'Successfully Created\n Go back !';
 				R::close();
             }
             else

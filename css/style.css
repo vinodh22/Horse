@@ -1,4 +1,3 @@
-
 /* Let's get this party started */
 ::-webkit-scrollbar {
     width: 9px;
@@ -20,7 +19,7 @@
 }
 
 ::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4); 
+	background: rgba(255,0,0,0.4);
 }
 
 .page-header {
@@ -83,32 +82,30 @@ h4 small{
   font-weight: normal;
   color: #999999;
 }
-#raceid,
-#racetime{
-		font-size: 20px;
+#raceid{
+		font-size: 13px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		margin:0px auto;
+		line-height: 4px;
 		background-color:#006633;
 		right:10px;
 }
 #bookedmember{
-		font-size: 25px;
+		font-size: 18px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		margin:0px auto;
 		background-color:#006633;
 		right:10px;
 }
 #bookeddetails{
-		width: auto;
-		height: auto;
+		width: 250px;
+		height: 65px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		margin:0px auto;
-		margin-top:15px;
+		margin-top:1px;
 		color: #585858 ;
+		float:left;
 		background-color:#F5DEB3 ;
-		margin-bottom:5px;
-		margin-left:30px;
-		margin-right:30px;
+		margin-left:40px;
 		
 }
 #bookeddetails:hover {
@@ -119,18 +116,6 @@ h4 small{
      -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00FF00;
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00FF00;
 }
-.customer {
-		font-size: 17px;
-		width:270px;
-		height:135px;
-		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-		margin:0px auto;
-		background-color:rgb(232,232,232);
-		margin-top:-18px;
-		margin-bottom:5px;
-		margin-left:10px;
-		
-}
 
 #page {
 		width: auto;
@@ -139,17 +124,18 @@ h4 small{
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		margin:0px auto;
 		float:left;
-		margin-top:20px;
-		margin-left:30px;
+		margin-top:0px;
+		margin-left:10px;
 }
 
-.customer:hover {
+.customer:hover,
+.customer1:hover {
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;
   outline: thin dotted \9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -webkit-box-shadow: inset 0 1px 1px #00FFFF, 0 0 8px #00FFFF;
+     -moz-box-shadow: inset 0 1px 1px #00FFFF, 0 0 8px #00FFFF;
+          box-shadow: inset 0 1px 1px #00FFFF, 0 0 8px #00FFFF;
 }
 .thumbnail:hover {
   border-color: rgba(82, 168, 236, 0.8);
@@ -166,26 +152,56 @@ h4 small{
 clear:both;
 }
 
-.customer {
-    overflow: auto;
-}​
-
 .row-fluid .thumbnails {
   margin-left: 0;
 }
 
+.rid {
+		font-size: 12px;
+		width:210px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		background-color:#F5DEB3 ;
+}
+
+.customer {
+		overflow: auto;
+		font-size: 14px;
+		width:200px;
+		height:105px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin:0px auto;
+		background-color:#FFEFD5;
+		margin-top:5px;
+		margin-bottom:-2px;
+		margin-left:1px;
+		margin-right:5px;
+}
+
+.customer1 {
+		overflow: auto;
+		font-size: 14px;
+		width:200px;
+		height:105px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		margin:0px auto;
+		background-color:#F5DEB3;
+		margin-top:-5px;
+		margin-bottom:-2px;
+		margin-left:1px;
+		margin-right:5px;
+}
 
 .thumbnail {
-	font-size: 16px;
-	width:290px;
-		height:260px;
+	font-size: 12px;
+	width:205px;
+		height:270px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		margin:0px auto;
 		float:left;
 		background-color:rgb(232,232,232);
-		margin-top:10px;
-		margin-bottom: 10px;
-		margin-left:15px;
+		margin-top:8px;
+		margin-bottom:0px;
+		margin-left:6.5px;
   display: block;
   padding: 4px;
   line-height: 1;
@@ -214,6 +230,36 @@ a.thumbnail:hover {
 
 .thumbnail .caption {
   padding: 9px;
+}
+span.cprao{
+	color:#0000CD;
+}
+span.mobin{
+  padding: 1px;
+  width:60px;
+  font-size:11px;
+  margin-left:-2px;
+  line-height: 14px;
+  text-align: left;
+  vertical-align: top;
+  border-top: 1px solid #dddddd;
+  background-color: #FFFAF0	;
+}
+span.mobin:hover {
+  background-color: #00FF00;
+  -webkit-box-shadow: 0 1px 4px #00FF00;
+     -moz-box-shadow: 0 1px 4px #00FF00;
+          box-shadow: 0 1px 4px #00FF00;
+}
+div.total{
+  padding: 0px 3px 0px 0px;
+  width:auto;
+  margin-left:8px;
+  margin-top:-15px;
+  line-height: 12px;
+}
+table tr:hover{
+  background-color: #F5FFFA;
 }
 
 input,
@@ -327,9 +373,9 @@ input[type="date"]:focus,
   border-color: rgba(82, 168, 236, 0.8);
   outline: 0;
   outline: thin dotted \9;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
 }
 
 .uneditable-textarea {
@@ -337,44 +383,95 @@ input[type="date"]:focus,
   height: auto;
 }
 
+tr.oddsamtname,
+tr.oddsamtname1{
+	display:none;
+	padding: 10px 3px 0px 10px;
+	font-size:11.5px;
+	line-height: 1px;
+	width:30px;
+border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+}
+input.baitmob1,
+input.baitmob2,
+input.baitmob3,
+input.baitmob11,
+input.baitmob22,
+input.baitmob33 {
+	padding: 0px 3px 0px 0px;
+	font-size:11.5px;
+	margin-bottom:4px;
+	margin-left:4px;
+	margin-top:5px;
+	height:15px;
+}
+input.baitmob1:hover ,
+input.baitmob2:hover ,
+input.baitmob3:hover,
+input.baitmob11:hover ,
+input.baitmob22:hover ,
+input.baitmob33:hover {
+	padding: 0px 3px 0px 0px;
+border-color: rgba(82, 168, 236, 0.8);
+  outline: 0;
+  outline: thin dotted \9;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+     -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.8);
+}
+tr.oddsamtname:hover,
+tr.oddsamtname1:hover{
+  background-color: #E8E8E8;
+}
+.baitmob1,
+.baitmob11,
+.mobodds,
+.mobodds1{
+	width:25px;
+}
+.baitmob2,
+.baitmob22,
+.mobbait,
+.mobbait1 {
+	width:30px;
+}
+.baitmob3,
+.baitmob33,
+.mobmid,
+.mobmid1{
+	width:40px;
+}
+
 table {
   max-width: 100%;
   background-color: transparent;
   border-collapse: collapse;
   border-spacing: 0;
+  table-layout: fixed;
 }
 
 table td {
-  padding: 6px;
-  width:50px;
-  line-height: 18px;
-  text-align: left;
-  vertical-align: top;
-  border-top: 1px solid #dddddd;
-}
-span.mobin{
-  padding: 8px;
-  width:60px;
-  margin-left:8px;
-  line-height: 18px;
-  text-align: left;
-  vertical-align: top;
-  border-top: 1px solid #dddddd;
-  background-color: #FFFAF0	;
-}
-
-table tbody tr:hover td,
-span.profitloss  {
-  background-color: #F8F8F8;
+  padding: 0px 10px 0px 16px;
+  font-size:11.5px;
+  width:30px;
+  text-align:left;
+  line-height: 1px;
+  height:15px;
 }
 
 .btn,
 .btn1 {
   display: inline-block;
   *display: inline;
-  padding: 4px 10px 4px;
-  margin-bottom: 0;
-  *margin-left: .3em;
+  padding: 4px 4px 2px 4px;
+  margin-bottom:-5px;
+  margin-left:10px;
+  margin-top:-5px;
   font-size: 13px;
   line-height: 18px;
   *line-height: 20px;

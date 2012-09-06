@@ -3,29 +3,32 @@
 <title>
 Race Entry
 </title>
-<link href="http://localhost/Horse/css/style.css" rel="stylesheet" type="text/css">
-<link href="http://localhost/Horse/css/jquery-ui-1.8.22.custom.css" rel="stylesheet" type="text/css">
+<link href="/css/style.css" rel="stylesheet" type="text/css">
+<link href="/css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<form action="http://localhost/Horse/race.php" method="post" id="entryForm">
+<form action="/race.php" method="post" id="entryForm">
 <div id="container">
 <table>
-<tr>
-<td>Race number: </td><td><input type="text" name="rnum"></td>
-<td>Racing Time: </td><td><input type="text" name="rtime"></td>
-<td>Race Date: </td><td><input type="text" name="rdate" id="date"></td>
-<td>Duration: </td><td><input type="text" name="dura"></td>
-<td><input type="submit" id="btn" value="Done !"></td>
-</tr>
+<tr><td>Race number: </td><td><input type="text" name="rnum" id="num"></td></tr>
+<tr><td>Racing Time: </td><td><input type="text" name="rtime" id="time"></td></tr>
+<tr><td>Race Date: </td><td><input type="text" name="rdate" id="date"></td></tr>
+<tr><td>Duration: </td><td><input type="text" name="dura" id="duration"></td></tr>
+<tr><td><input type="submit" id="btn" value="Done !"></td></tr>
+
 </table>
 </div>
 </form>
-<script type="text/javascript" src="http://localhost/Horse/js/jquery.js"></script>
-<script type="text/javascript" src="http://localhost/Horse/js/jquery-ui-1.8.22.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+$( "#num,#time,#date,#duration" ).val('');
 	$(function() {
 		$( "#date" ).datepicker({dateFormat: "dd.mm.yy",maxDate: "+1y",minDate: new Date()});
+		$('#time').timepicker({});
+		$('#duration').timepicker({});
 	});
 });
 </script>

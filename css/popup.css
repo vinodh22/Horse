@@ -5,9 +5,9 @@
 .login-popup{
 	display:none;
 	background: #F0F0F0;
-	padding: 10px; 	
+	padding: 10px;
 	border: 2px solid #ddd;
-	height:260px;
+	height:200px;
 	font-size: 1.2em;
 	position: absolute;
 	top: 50%; left: 50%;
@@ -19,12 +19,46 @@
         -moz-border-radius: 3px; /* Firefox */
         -webkit-border-radius: 3px; /* Safari, Chrome */
 }
-
+.popup1,
+.popup2{
+	display:none;
+	background: #F0F0F0;
+	height:15px;
+	border: 2px solid #ddd;
+	font-size: 1.2em;
+	position: absolute;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	box-shadow: 0px 0px 20px #999; /* CSS3 */
+        -moz-box-shadow: 0px 0px 20px #999; /* Firefox */
+        -webkit-box-shadow: 0px 0px 20px #999; /* Safari, Chrome */
+	border-radius:3px 3px 3px 3px;
+        -moz-border-radius: 3px; /* Firefox */
+        -webkit-border-radius: 3px; /* Safari, Chrome */
+}
+.popup1{
+	width:70px;
+	}
+.popup2{
+	width:30px;
+	}
+.popup3{
+	display:none;
+	height:10px;
+	font-size: 12px;
+	position: absolute;
+}
 img.btn_close { Position the close button
 	float: none; 
 	margin: -28px -28px 0 0;
 }
-
+mg.btn_close1 {
+	float: none;
+	margin-left:-20px;
+	margin-right:-10px;
+	margin-top:-50px;
+	margin-bottom:-2px;
+}
 fieldset { 
 	border:none; 
 }
@@ -58,8 +92,8 @@ form.pop .textbox input {
         -webkit-border-radius: 3px;
 	font:13px Arial, Helvetica, sans-serif;
 	padding:6px 6px 4px;
-	width:190px;
-	height:20px;
+	width:120px;
+	height:10px;
 }
 
 form.pop input:-moz-placeholder { color:#bbb; text-shadow:0 0 2px #000; }
@@ -79,8 +113,9 @@ form.pop input::-webkit-input-placeholder { color:#bbb; text-shadow:0 0 2px #000
 	cursor:pointer;
 	display:block;
 	padding:6px 6px 4px;
-	margin-top:10px;
+	margin-top:0px;
+	margin-left:20px;
 	font:12px; 
-	width:120px;
+	width:100px;
 }
 .button:hover { background:#ddd; }
