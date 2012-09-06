@@ -3,10 +3,10 @@
 <title>
 Horse Entry
 </title>
-<link href="http://localhost/Horse/css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="http://localhost/Horse/js/jquery.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
-$.post('http://localhost/Horse/select.php', {
+$.post('select.php', {
         retrieveHorse: "1",//retrieveHorse triggers the function call in server side to retrieve the horse details
 		raceid:$("#race").text()
     }, function (data3) {
@@ -21,7 +21,7 @@ $.post('http://localhost/Horse/select.php', {
 </script>
 </head>
 <body>
-<form action="http://localhost/Horse/horse.php" method="post" id="entryForm">
+<form action="horse.php" method="post" id="entryForm">
 <div id="container">
 <table>
 <tr>
