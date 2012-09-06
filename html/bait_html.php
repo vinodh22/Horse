@@ -3,8 +3,8 @@
 <title>
 Start Bait !
 </title>
-<link href="/css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
-<link href="/css/style.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/Horse/css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
+<link href="http://localhost/Horse/css/style.css" rel="stylesheet" type="text/css">
 <?php
 $sel=$_POST['rsel'];
 if($sel!=0) {
@@ -15,15 +15,15 @@ else {
 echo "Sorry Select the RaceID";
 }
 ?>
-<link href="/css/popup.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/js/jquery.js"></script>
-<script type="text/javascript" src="/js/bait.js"></script>
-<script type="text/javascript" src="/js/popup.js"></script>
-<script type="text/javascript" src="/js/onHover.js"></script>
-<script type="text/javascript" src="/js/mousetrap.min.js"></script>
-<script type="text/javascript" src="/js/jquery-ui-1.8.23.custom.min.js"></script>
-<script type="text/javascript" src="/js/jquery.ui.autocomplete.js"></script>
-<script type="text/javascript" src="/js/browserDetect.js"></script>
+<link href="http://localhost/Horse/css/popup.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://localhost/Horse/js/jquery.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/bait.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/popup.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/onHover.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/mousetrap.min.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/jquery.ui.autocomplete.js"></script>
+<script type="text/javascript" src="http://localhost/Horse/js/browserDetect.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
 	auto("#mid");
@@ -107,7 +107,7 @@ $(id).live('keypress',function (e) {
 			});
 		if(key!='') {
 		$.ajax({
-        url: 'bait.php',
+        url: 'http://localhost/Horse/bait.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -133,7 +133,7 @@ $(id).live('keypress',function (e) {
 </head>
 
 <body>
-<form action="bait.php" method="post" id="baitForm">
+<form action="http://localhost/Horse/bait.php" method="post" id="baitForm">
 <center>
 <div id="page">
 
@@ -142,7 +142,7 @@ $(id).live('keypress',function (e) {
 </form>
 <div id="login-box" class="login-popup">
         <a href="#" class="close"><img src="close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
-          <form method="post" class="pop" action="bait.php" id="popForm">
+          <form method="post" class="pop" action="http://localhost/Horse/bait.php" id="popForm">
           <center><div id="msg" style="display:none;color:red"></div></center>
                 <fieldset class="textbox">
 				<label class="Win">
@@ -162,7 +162,7 @@ $(id).live('keypress',function (e) {
           </form>
 </div>
 <div id="cross-tick" class="popup1">
-    <form method="post" class="pop" action="bait.php" id="tcForm">
+    <form method="post" class="pop" action="http://localhost/Horse/bait.php" id="tcForm">
         <table><tr>
 		<td><a id="crosstd" href="#" class="cross"><img id="tick" src="cross.gif" class="btn_close1" title="Delete" alt="Close" /></a></td>
 		<td><a id="audiotd" href="#" class="audio"><img src="audio.gif" class="btn_close1" title="Audio" alt="Close" /></a></td>
@@ -170,7 +170,7 @@ $(id).live('keypress',function (e) {
     </form>
 </div>
 <div id="add-bait" class="popup2">
-    <form method="post" class="pop" action="bait.php" id="tcForm">
+    <form method="post" class="pop" action="http://localhost/Horse/bait.php" id="tcForm">
         <table><tr>
 		<td><a id="crosstd" href="#" class="tick"></a></td>
 		</tr></table>

@@ -3,10 +3,10 @@
 <title>
 Select Race !
 </title>
-<link href="/css/style.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="/js/jquery.js"></script>
+<link href="http://localhost/Horse/css/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="http://localhost/Horse/js/jquery.js"></script>
 <script type="text/javascript">
-$.post('/select.php', {
+$.post('http://localhost/Horse/select.php', {
         retrieveHorse: "1",//retrieveHorse triggers the function call in server side to retrieve the horse details
 		raceid:$("#race").text()
     }, function (data3) {
@@ -21,7 +21,7 @@ $.post('/select.php', {
 </script>
 </head>
 <body>
-<form action="/html/bait_html.php" method="post" id="selectRaceForm">
+<form action="http://localhost/Horse/html/bait_html.php" method="post" id="selectRaceForm">
 <div id="container">
 <table>
 <tr><td>Race number: </td><td><select id="sel" name="rsel"></select></td></tr>

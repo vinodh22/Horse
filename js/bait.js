@@ -85,6 +85,12 @@ function inOut(race_id2, horse_id2,wp) {
 			if(data1!='') {
 			var risk=data1[0].out-data1[0].total;
 			var ao=Math.floor((risk/data1[0].total)*100)/100;
+			if(ao=="" || risk=="") {
+			data1[0].total=0;
+			data1[0].out=0;
+			ao=0;
+			rsik=0;
+			}
 			bp = "<h5><span class='cprao'> C:</span><span class='mobin'>" + data1[0].total + "</span><span class='cprao'> P:</span><span class='mobin'>" + data1[0].out + "</span><span class='cprao'> R:</span><span class='mobin'>"+risk+"</span><span class='cprao'> A.O:</span><span class='mobin'>"+ao+"</span></h5>";
 			}
 			else
