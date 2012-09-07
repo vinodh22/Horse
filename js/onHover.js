@@ -18,7 +18,6 @@ $(document).ready(function () {
 	\************************************************************/
 		$('a.cross').live('click', function () {
 		var datastring = "baitid=" + baitID + "&deleteBait=1";
-			console.log("Value of sure:"+sure);
 			$.ajax({
 				url: '../bait.php',
 				data: datastring,
@@ -106,6 +105,7 @@ $(document).ready(function () {
 			data = jQuery.parseJSON(data);
 			if(data.check=="true") {//onInsert 
 				CallMe_Win(horseID);
+				underlineName();
 			}
         });
 		$('input.baitmob1,input.baitmob2,input.baitmob3').val('');			
@@ -171,6 +171,7 @@ $(document).ready(function () {
 			data = jQuery.parseJSON(data);
 			if(data.check=="true") {//onInsert 
 				CallMe_Place(horseID);
+				underlineName();
 			}
         });
 		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');		

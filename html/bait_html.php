@@ -17,8 +17,8 @@ echo "Sorry Select the RaceID";
 ?>
 <link href="../css/popup.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="../js/jquery.js"></script>
-<script type="text/javascript" src="../js/bait.js"></script>
 <script type="text/javascript" src="../js/popup.js"></script>
+<script type="text/javascript" src="../js/bait.js"></script>
 <script type="text/javascript" src="../js/onHover.js"></script>
 <script type="text/javascript" src="../js/mousetrap.min.js"></script>
 <script type="text/javascript" src="../js/jquery-ui-1.8.23.custom.min.js"></script>

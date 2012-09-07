@@ -64,16 +64,17 @@ $(document).ready(function () {
 			if(data.check=="true") {//onInsert
 				if(rval==1) {
 					CallMe_Win(horseID);
+					underlineName();
 				}
 				else {
 					CallMe_Place(horseID);
+					underlineName();
 				}
 				$('a.close').trigger('click');
 				$('#odd,#amt,#mid').val('');
 			}
 			else
 				$("#msg").html(data[0]).fadeIn(300).fadeOut(300);
-			underlineName();
         });
         return false;
     });

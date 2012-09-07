@@ -239,9 +239,11 @@ auto(y);
         success: function (data) {
 		if(x==1) {
 		CallMe_Win(hsplit[0]);
+		underlineName();
 		}
 		else {
 		CallMe_Place(hsplit[0]);
+		underlineName();
 		}
 		}
 		});
