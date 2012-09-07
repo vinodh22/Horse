@@ -2,11 +2,12 @@
 /************************************************************\
 *this function stores the configuration details
 \************************************************************/
+error_reporting(1);
 define("DB_TYPE","mysql");
-define("DB_NAME","horserace");
+define("DB_NAME","devbroth_horse");
 define("HOST","localhost");
-define("USERNAME","root");
-define("PASSWORD","");
+define("USERNAME","devbroth_common");
+define("PASSWORD","common123");
 define("BAIT_TABLE","bait");
 define("HORSE_TABLE","horse");
 define("PERSON_TABLE","person");

@@ -20,7 +20,7 @@ $(document).ready(function () {
 		var datastring = "baitid=" + baitID + "&deleteBait=1";
 			console.log("Value of sure:"+sure);
 			$.ajax({
-				url: 'http://localhost/Horse/bait.php',
+				url: '../bait.php',
 				data: datastring,
 				//deleteBait triggers a function call in server side to delete bait details
 				type: "POST",
@@ -57,7 +57,7 @@ $(document).ready(function () {
         raceID = hsplit[1];		
         loginBox = $(this).attr('class');
 	//insert previous odd amount in textbox
-		$.post('http://localhost/Horse/bait.php', {
+		$.post('../bait.php', {
             insertPrevious: "1", //inserts previous odd amount
 			flag:1,
             horseid: horseID,
@@ -84,7 +84,7 @@ $(document).ready(function () {
 		if(!window.mid[1]) {
 			var dataString = "&name=" + window.mid[0] + "&retrievePersonID=1";
 			$.ajax({//retrievePersonID triggers the function call in server side to retrieve member ID
-			url: 'http://localhost/Horse/person.php',
+			url: '../person.php',
 			data: dataString,
 			type: "POST",
 			async: false,
@@ -94,7 +94,7 @@ $(document).ready(function () {
 			}
 			});
 		}
-		$.post('http://localhost/Horse/bait.php', {
+		$.post('../bait.php', {
             save: "1", //save triggers the function call in server side to save the bait details
             odd: odd,
             amnt: amt,
@@ -114,7 +114,7 @@ $(document).ready(function () {
     });
 	$('tr.oddsamtname1 td:nth-child(1)').live('click',function () {
 	var win=window.flag;
-		$$('input.baitmob11,input.baitmob22,input.baitmob33').val('');
+		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');
 	var odd,amt;
         id = $(this).closest("div");
 		hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
@@ -122,7 +122,7 @@ $(document).ready(function () {
         raceID = hsplit[1];		
         loginBox = $(this).attr('class');
 	//insert previous odd amount in textbox
-		$.post('http://localhost/Horse/bait.php', {
+		$.post('../bait.php', {
             insertPrevious: "1", //inserts previous odd amount
 			flag:0,
             horseid: horseID,
@@ -149,7 +149,7 @@ $(document).ready(function () {
 		if(!window.mid[1]) {
 			var dataString = "&name=" + window.mid[0] + "&retrievePersonID=1";
 			$.ajax({//retrievePersonID triggers the function call in server side to retrieve member ID
-			url: 'http://localhost/Horse/person.php',
+			url: '../person.php',
 			data: dataString,
 			type: "POST",
 			async: false,
@@ -159,7 +159,7 @@ $(document).ready(function () {
 			}
 			});
 		}
-		$.post('http://localhost/Horse/bait.php', {
+		$.post('../bait.php', {
             save: "1", //save triggers the function call in server side to save the bait details
             odd: odd,
             amnt: amt,
@@ -173,7 +173,7 @@ $(document).ready(function () {
 				CallMe_Place(horseID);
 			}
         });
-		$$('input.baitmob11,input.baitmob22,input.baitmob33').val('');		
+		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');		
 			$("tr.oddsamtname1").fadeOut(50);
 		});
     });

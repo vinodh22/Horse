@@ -12,7 +12,7 @@ $(document).ready(function () {
 		//insert previous odd amount in textbox
 		$("input:radio[name=win_place]").click(function() {
 		rval = $(this).val();
-		$.post('http://localhost/Horse/bait.php', {
+		$.post('../bait.php', {
             insertPrevious: "1", //inserts previous odd amount
 			flag:rval,
             horseid: horseID,
@@ -41,7 +41,7 @@ $(document).ready(function () {
 	if(!mid[1]) {
 		var dataString = "&name=" + mid[0] + "&retrievePersonID=1";
 		$.ajax({//updatePersonID triggers the function call in server side to member name
-        url: 'http://localhost/Horse/person.php',
+        url: '../person.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -51,7 +51,7 @@ $(document).ready(function () {
 		}
 		});
 		}
-        $.post('http://localhost/Horse/bait.php', {
+        $.post('../bait.php', {
             save: "1", //save triggers the function call in server side to save the bait details
             odd: $('#odd').val(),
             amnt: $('#amt').val(),
@@ -135,60 +135,6 @@ function ctrlPlusKey(horse_id) {
         });
 		}
     }
-	else if (len == 2) {
-	var rem=Math.floor(val%10),div=Math.floor(val/10);
-		console.log(horse_id+":"+div+":"+rem);
-		Mousetrap.bind('ctrl+'+div+'+'+rem, function() {
-		console.log('4 4 4');
-			window.flag=1;
-			$("tr.oddsamtname").fadeOut();
-			$("tr.oddsamtname1").fadeOut();
-			$('input#oddsMobWin' + horse_id).trigger('click');
-			$('input#oddsMobWin' + horse_id).closest("tr.oddsamtname").show();
-			$('input#oddsMobWin' + horse_id).focus();
-			return false;
-			}
-			, undefined
-			, function(level){
-				switch(level){
-				  case 1:
-					console.log('4');
-					return false;
-					break;
-				  case 2:
-					console.log('4 4');
-					return false;
-					break;
-				};
-				return false;
-			  }
-		);
-		Mousetrap.bind('ctrl+shift+'+div+'+'+rem, function() {
-		console.log('4 4 4');
-			window.flag=1;
-			$("tr.oddsamtname").fadeOut();
-			$("tr.oddsamtname1").fadeOut();
-			$('input#oddsMobPlace' + horse_id).trigger('click');
-			$('input#oddsMobPlace' + horse_id).closest("tr.oddsamtname1").show();
-			$('input#oddsMobPlace' + horse_id).focus();
-			return false;
-			}
-			, undefined
-			, function(level){
-				switch(level){
-				  case 1:
-					console.log('4');
-					return false;
-					break;
-				  case 2:
-					console.log('4 4');
-					return false;
-					break;
-				};
-				return false;
-			  }
-		);
-	}
 }
 /************************************************************\
 *Popup

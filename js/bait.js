@@ -7,7 +7,7 @@ $(document).ready(function () {
 \************************************************************/
 function startBait() {
 var checkPerson='',checkPerson1='',checkInOut='',checkInOut1='',pageAppend='';
-    $.post('http://localhost/Horse/bait.php', {
+    $.post('../bait.php', {
         retrieveHorse: "1",//retrieveHorse triggers the function call in server side to retrieve the horse details
 		raceid:$("#race").text()
     }, function (data3) {
@@ -37,7 +37,7 @@ var checkPerson='',checkPerson1='',checkInOut='',checkInOut1='',pageAppend='';
 function baiting_person(race_id1, horse_id1,wp) {
     var dataString = "raceid=" + race_id1 + "&horseid=" + horse_id1 + "&w_or_p=" + wp +"&retrievePerson=1",bp = '<table>',len, i, data1;
     $.ajax({//retrievePerson triggers the function call in server side to retrieve the baiting person details
-        url: 'http://localhost/Horse/bait.php',
+        url: '../bait.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -76,7 +76,7 @@ function baiting_person(race_id1, horse_id1,wp) {
 function inOut(race_id2, horse_id2,wp) {
     var dataString = "raceid=" + race_id2 + "&horseid=" + horse_id2 + "&w_or_p=" + wp + "&raceinout=1",bp = '',data1;
     $.ajax({//raceinout triggers the function call in server side to retrieve the profit & loss details for the respective horse
-        url: 'http://localhost/Horse/bait.php',
+        url: '../bait.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -179,7 +179,7 @@ function moboddsLive(x,y) {
   var hsplit = $(y).closest("tr").attr('id').split("-");
   var dataString = "bid=" + hsplit[3] + "&odds=" + $(y).text() + "&updateOdds=1";
     $.ajax({//updateOdds triggers the function call in server side to update odds
-        url: 'http://localhost/Horse/bait.php',
+        url: '../bait.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -201,7 +201,7 @@ function mobbaitLive(x,y) {
 var hsplit = $(y).closest("tr").attr('id').split("-");
   var dataString = "bid=" + hsplit[3] + "&amount=" + $(y).text() + "&updateAmount=1";
     $.ajax({//updateAmount triggers the function call in server side to update bait amount
-        url: 'http://localhost/Horse/bait.php',
+        url: '../bait.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -224,7 +224,7 @@ auto(y);
   var hsplit = $(y).closest("tr").attr('id').split("-");
   var dataString = "pid=" + hsplit[2] + "&name=" + $(y).text() + "&retrievePersonID=1";
     $.ajax({//updatePerson triggers the function call in server side to member name
-        url: 'http://localhost/Horse/person.php',
+        url: '../person.php',
         data: dataString,
         type: "POST",
         async: false,
@@ -232,7 +232,7 @@ auto(y);
 		data1 = jQuery.parseJSON(data);
 		var dataString1 = "idold=" + hsplit[2] + "&idnew=" + data1[0].id + "&horseid=" + hsplit[0] + "&odd="+$(y).prev().prev().text()+"&amt="+$(y).prev().text()+"&raceid=" + hsplit[1] + "&updateMemberID=1";
     $.ajax({//updateMemberID triggers the function call in server side to update Member ID
-        url: 'http://localhost/Horse/bait.php',
+        url: '../bait.php',
         data: dataString1,
         type: "POST",
         async: false,
