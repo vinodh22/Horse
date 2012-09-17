@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<head>
+<title>
+Race Entry
+</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-1.8.23.custom.min.js"></script>
+<script type="text/javascript" src="../js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+$( "#num,#time,#date,#nohorse" ).val('');
+	$( "#date" ).datepicker({dateFormat: "dd.mm.yy",maxDate: "+1y",minDate: new Date()});
+	$('#time').timepicker({});
+
+	$("form").submit(function() {
+		if(!$("#num").val().match(/^[0-9]+$/g)){
+			$("#msg").html("<p style='color:red'>Check Race Number !</p>").show().fadeOut(1000);
+			return false;
+		}
+		else if($("#time").val()=='00:00' || (!$("#time").val())) {
+			$("#msg").html("<p style='color:red'>Check Time !</p>").show().fadeOut(1000);
+			return false;
+		}
+		else if(!$("#date").val().match(/^[0-9.]+$/g)) {
+			$("#msg").html("<p style='color:red'>Check Date !</p>").show().fadeOut(1000);
+			return false;
+		}
+		else if(!$("#nohorse").val().match(/^[0-9]+$/g)) {
+			$("#msg").html("<p style='color:red'>Check Horse count !</p>").show().fadeOut(1000);
+			return false;
+		}
+		else {
+		var race="rcno="+$("#num").val(),found=2;
+		$.ajax({//retrievePerson triggers the function call in server side to retrieve the baiting person details
+        url: '../horse.php',
+        data:race,
+        type: "POST",
+        async: false,
+        success: function (data) {
+		if(data=="found"){
+			$("#msg").html("<p style='color:red'>Race Number Exists !</p>").show().fadeOut(1000);
+			found=1;
+		}
+		else if(data=="not found"){
+			found=2;
+		}
+        }
+		});
+		if(found==2) {
+		return true;
+		}
+		else {
+		return false;
+		}
+		}
+});
+});
+</script>
+</head>
+<body>
+<form action="../race.php" method="post" id="entryForm">
+<div id="msg" style="display:none" align="center"></div>
+<a id="crosstd" href="index.html" class="btn">Home !</a><br><br>
+<div id="container">
+<table>
+<tr><td>number: </td><td><input type="text" name="rnum" id="num"></td>
+<td>Time: </td><td><input type="text" name="rtime" id="time" value="" readonly="readonly"></td></tr>
+<tr><td>Date: </td><td><input type="text" name="rdate" id="date" value="" readonly="readonly"></td>
+<td>No.Of.Horse: </td><td><input type="text" name="nohor" id="nohorse" value=""></td></tr>
+<tr>
+<td><input type="submit" value="Done !" style="width:auto;"></td></tr>
+</table>
+</div>
+</form>
+</body>
+</html>
