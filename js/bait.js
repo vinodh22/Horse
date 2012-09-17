@@ -82,81 +82,171 @@ function inOut(race_id2, horse_id2,wp) {
         async: false,
         success: function (data2) {
 		data1 = jQuery.parseJSON(data2);//this find the profit and loss for the respective horse
+		if(wp==1) {
 			if(data1!='') {
-			var risk=data1[0].out-data1[0].total;
-			var ao=Math.floor((risk/data1[0].total)*100)/100;
-			if(ao=="" || risk=="") {
-			data1[0].total=0;
-			data1[0].out=0;
-			ao=0;
-			rsik=0;
-			}
-			bp = "<h5><span class='cprao'> C:</span><span class='mobin'>" + data1[0].total + "</span><span class='cprao'> P:</span><span class='mobin'>" + data1[0].out + "</span><span class='cprao'> R:</span><span class='mobin'>"+risk+"</span><span class='cprao'> A.O:</span><span class='mobin'>"+ao+"</span></h5>";
+				var risk=data1[0].winc-data1[0].out;
+				var single_risk=data1[0].out-data1[0].total;
+				var ao=Math.floor((single_risk/data1[0].total)*100)/100;
+				if(ao==0 || single_risk==0) {
+					data1[0].total=0;
+					data1[0].out=0;
+					risk=0;
+					ao=0;
+				}
+				bp = "<h5><span class='cprao'> C:</span><span class='mobin'>" + data1[0].total + "</span><span class='cprao'> P:</span><span class='mobin'>" + data1[0].out + "</span><span class='cprao'> R:</span><span class='mobin'>"+risk+"</span><span class='cprao'> A.O:</span><span class='mobin'>"+ao+"</span></h5>";
 			}
 			else
-			bp = "<h5><span class='cprao'>C:</span><span class='mobin'>0</span><span class='cprao'> P:</span><span class='mobin'>0</span><span class='cprao'> R:</span><span class='mobin'>0</span><span class='cprao'> A.O:</span><span class='mobin'>0</span></h5>";
+				bp = "<h5><span class='cprao'>C:</span><span class='mobin'>0</span><span class='cprao'> P:</span><span class='mobin'>0</span><span class='cprao'> R:</span><span class='mobin'>0</span><span class='cprao'> A.O:</span><span class='mobin'>0</span></h5>";
+		}
+		else {
+			if(data1!='') {
+				var risk=data1[0].placec-data1[0].out;
+				var single_risk=data1[0].out-data1[0].total;
+				var ao=Math.floor((single_risk/data1[0].total)*100)/100;
+				if(ao==0 || single_risk==0) {
+					data1[0].total=0;
+					data1[0].out=0;
+					risk=0;
+					ao=0;
+				}
+				bp = "<h5><span class='cprao'> C:</span><span class='mobin'>" + data1[0].total + "</span><span class='cprao'> P:</span><span class='mobin'>" + data1[0].out + "</span><span class='cprao'> R:</span><span class='mobin'>"+risk+"</span><span class='cprao'> A.O:</span><span class='mobin'>"+ao+"</span></h5>";
+			}
+			else
+				bp = "<h5><span class='cprao'>C:</span><span class='mobin'>0</span><span class='cprao'> P:</span><span class='mobin'>0</span><span class='cprao'> R:</span><span class='mobin'>0</span><span class='cprao'> A.O:</span><span class='mobin'>0</span></h5>";
+		}
 		}
     });
     return bp;
 }
+function riskOnAllHorse() {
 
+}
 /************************************************************\
 *Updating baiting odds
 \************************************************************/
 $('td.mobodds').live('blur',function() {
-	moboddsLive(1,$(this));
+	if(($(this).text().trim().match(/^[0-9]*\.[0-9]+$/g)) && ($(this).text().trim()<1 && $(this).text().trim()>0)){
+	//alert((parseInt($(this).text().trim())+5)+":"+parseInt($(this).text().trim()));
+		moboddsLive(1,$(this));
+	}
+	else {
+		CrossTickAudiopopup("#suggestion-odds",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,15);
+		document.execCommand('undo', false, null);
+		setTimeout(function(){$("#suggestion-odds").fadeOut()},1000);
+	}
 });
 $('td.mobodds1').live('blur',function() {
-	moboddsLive(0,$(this));
+	if(($(this).text().trim().match(/^[0-9]*\.[0-9]+$/g)) && ($(this).text().trim()<1 && $(this).text().trim()>0)){
+		moboddsLive(0,$(this));
+	}
+	else {
+		CrossTickAudiopopup("#suggestion-odds",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,15);
+		document.execCommand('undo', false, null);
+		setTimeout(function(){$("#suggestion-odds").fadeOut()},1000);
+	}
 });
 $('td.mobodds').live('keypress',function(e) {
-	if(e.keyCode==13 || e.keyCode==9)
-		moboddsLive(1,$(this));
+	if(e.keyCode==13 || e.keyCode==9){
+		if(($(this).text().trim().match(/^[0-9]*\.[0-9]+$/g)) && ($(this).text().trim()<1 && $(this).text().trim()>0)){
+			moboddsLive(1,$(this));
+		}
+		else {
+			CrossTickAudiopopup("#suggestion-odds",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,15);
+			document.execCommand('undo', false, null);
+			setTimeout(function(){$("#suggestion-odds").fadeOut()},1000);
+		}
+	}
 });
 $('td.mobodds1').live('keypress',function(e) {
-	if(e.keyCode==13 || e.keyCode==9)
-		moboddsLive(0,$(this));
+	if(e.keyCode==13 || e.keyCode==9){
+		if(($(this).text().trim().match(/^[0-9]*\.[0-9]+$/g)) && ($(this).text().trim()<1 && $(this).text().trim()>0)){
+			moboddsLive(0,$(this));
+		}
+		else {
+			CrossTickAudiopopup("#suggestion-odds",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,15);
+			document.execCommand('undo', false, null);
+			setTimeout(function(){$("#suggestion-odds").fadeOut()},1000);
+		}
+	}
 });
 /************************************************************\
 *Updating baiting amount
 \************************************************************/
 $('td.mobbait').live('blur',function() {
-	mobbaitLive(1,$(this));
+	if(($(this).text().trim().match(/^[0-9]+$/g)) && ($(this).text().trim())>0){
+		mobbaitLive(1,$(this));
+	}
+	else {
+		CrossTickAudiopopup("#suggestion-bait",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,60);
+		document.execCommand('undo', false, null);
+		setTimeout(function(){$("#suggestion-bait").fadeOut()},1000);
+	}
 });
 $('td.mobbait1').live('blur',function() {
-	mobbaitLive(0,$(this));
+	if(($(this).text().trim().match(/^[0-9]+$/g)) && ($(this).text().trim())>0){
+		mobbaitLive(0,$(this));
+	}
+	else {
+		CrossTickAudiopopup("#suggestion-bait",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,60);
+		document.execCommand('undo', false, null);
+		setTimeout(function(){$("#suggestion-bait").fadeOut()},1000);
+	}
 });
 $('td.mobbait').live('keypress',function(e) {
-	if(e.keyCode==13 || e.keyCode==9)
-		mobbaitLive(1,$(this));
+if(e.keyCode==13 || e.keyCode==9){
+		if(($(this).text().trim().match(/^[0-9]+$/g)) && ($(this).text().trim())>0){
+			mobbaitLive(1,$(this));		
+		}
+		else {
+			CrossTickAudiopopup("#suggestion-bait",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,60);
+			document.execCommand('undo', false, null);
+			setTimeout(function(){$("#suggestion-bait").fadeOut()},1000);
+		}
+	}
 });
 $('td.mobbait1').live('keypress',function(e) {
-	if(e.keyCode==13 || e.keyCode==9)
-		mobbaitLive(0,$(this));
+	if(e.keyCode==13 || e.keyCode==9){
+		if(($(this).text().trim().match(/^[0-9]+$/g)) && ($(this).text().trim())>0){
+			mobbaitLive(0,$(this));
+		}
+		else {
+			CrossTickAudiopopup("#suggestion-bait",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,60);
+			document.execCommand('undo', false, null);
+			setTimeout(function(){$("#suggestion-bait").fadeOut()},1000);
+		}
+	}
 });
 /************************************************************\
 *Updating member name
 \************************************************************/
 $('td.mobmid').live('blur',function() {
-	var hsplit = $(this).closest("tr").attr('id').split("-");
-	CallMe_Win(hsplit[0]);
-	underlineName();
+	document.execCommand('undo', false, null);
 });
 $('td.mobmid1').live('blur',function() {
-	var hsplit = $(this).closest("tr").attr('id').split("-");
-	CallMe_Place(hsplit[0]);
-	underlineName();
+	document.execCommand('undo', false, null);
 });
 $('td.mobmid').live('keypress',function(e) {
 	if(e.keyCode==13 || e.keyCode==9) {
-		mobmidLive(1,$(this));
-		underlineName();
+		if(($(this).text().trim().match(/^[0-9]*[0-9]*([0-9]\.)*[a-zA-Z]+$/g)) || ($(this).text().match(/^[0-9]*[0-9]*([0-9]\.)*[a-zA-Z]+:[0-9]$/g))){
+			mobmidLive(1,$(this));
+		}
+		else {
+			CrossTickAudiopopup("#suggestion-name",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,125);
+			document.execCommand('undo', false, null);
+			setTimeout(function(){$("#suggestion-name").fadeOut()},1000);
+		}
 	}
 });
 $('td.mobmid1').live('keypress',function(e) {
 	if(e.keyCode==13 || e.keyCode==9) {
-		mobmidLive(0,$(this));
-		underlineName();
+		if(($(this).text().trim().match(/^[0-9]*[0-9]*([0-9]\.)*[a-zA-Z]+$/g)) || ($(this).text().match(/^[0-9]*[0-9]*([0-9]\.)*[a-zA-Z]+:[0-9]$/g))){
+			mobmidLive(0,$(this));
+		}
+		else {
+			CrossTickAudiopopup("#suggestion-name",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+70,125);
+			document.execCommand('undo', false, null);
+			setTimeout(function(){$("#suggestion-name").fadeOut()},1000);
+		}
 	}
 });
 
@@ -166,10 +256,12 @@ $('td.mobmid1').live('keypress',function(e) {
 function CallMe_Win(hsplit) {
 	$("div#displayWin"+hsplit).html(baiting_person($("#race").text(), hsplit,1));//display member
 	$("div#inoutWin"+hsplit).html(inOut($("#race").text(), hsplit,1));//onInsert change PayIn & PayOut
+	underlineName();
 }
 function CallMe_Place(hsplit) {
 	$("div#displayPlace"+hsplit).html(baiting_person($("#race").text(), hsplit,0));//display member
 	$("div#inoutPlace"+hsplit).html(inOut($("#race").text(), hsplit,0));//onInsert change PayIn & PayOut
+	underlineName();
 }
 
 /************************************************************\
@@ -178,6 +270,7 @@ function CallMe_Place(hsplit) {
 function moboddsLive(x,y) {
   var hsplit = $(y).closest("tr").attr('id').split("-");
   var dataString = "bid=" + hsplit[3] + "&odds=" + $(y).text() + "&updateOdds=1";
+  
     $.ajax({//updateOdds triggers the function call in server side to update odds
         url: '../bait.php',
         data: dataString,
@@ -186,9 +279,11 @@ function moboddsLive(x,y) {
         success: function (data) {
 		if(x==1) {
 		CallMe_Win(hsplit[0]);
+		return;
 		}
 		else {
 		CallMe_Place(hsplit[0]);
+		return;
 		}
 		}
     });
@@ -208,9 +303,11 @@ var hsplit = $(y).closest("tr").attr('id').split("-");
         success: function (data) {
 		if(x==1) {
 		CallMe_Win(hsplit[0]);
+		return;
 		}
 		else {
 		CallMe_Place(hsplit[0]);
+		return;
 		}
 		}
     });
@@ -239,11 +336,11 @@ auto(y);
         success: function (data) {
 		if(x==1) {
 		CallMe_Win(hsplit[0]);
-		underlineName();
+		return;
 		}
 		else {
 		CallMe_Place(hsplit[0]);
-		underlineName();
+		return;
 		}
 		}
 		});

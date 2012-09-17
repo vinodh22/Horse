@@ -8,20 +8,39 @@ Person Entry
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript" src="../js/jquery-ui-1.8.23.custom.min.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){
-	$(function() {
-		$( "#dob" ).datepicker({ dateFormat:"dd.mm.yy",changeYear: true, maxDate: "-18y",yearRange: "1950"});
-	});
+$("#pname").live('keyup',function (e) {
+	if (this.value.match(/^[0-9]*[0-9]*([0-9]*\.)*[a-zA-Z]+$/g)) {
+        $("input[type=button]").removeAttr("disabled");
+	}
+	else
+		$("input[type=button]").attr("disabled", "disabled");
 });
+function checkMe() {
+	if($("#pname").val().match(/^[0-9]*[0-9]*([0-9]*\.)*[a-zA-Z]+$/g)) {
+	var datastring="name="+$("#pname").val()+"&yes=1";
+		$.post('../person.php',
+		datastring
+		, function (data) {
+        if(data=="true"){
+			$("#msg").html("<p style='color:red'>Successfully Created</p>").show().fadeOut(1000);
+			$("#pname").val('');
+		}
+		});
+	}
+	else {
+	$("#msg").html("<p style='color:red'>Name Cannot be Empty</p>").show().fadeOut();
+	}
+}
 </script>
 </head>
 <body>
-<form action="../person.php" method="post" id="entryForm">
-
+<form action="#Person_Entery" method="post" id="PersonentryForm">
+<div id="msg" style="display:none" align="center"></div>
+<a id="crosstd" href="index.html" class="btn">Home !</a><br><br>
 <div id="container"><table>
-<tr><td>Name : </td><td><input type="text" name="name"></td></tr>
+<tr><td>Name : </td><td><input id="pname" type="text" name="name"></td></tr>
 </table>
-<tr><td><input type="submit" id="btn" value="Done !"></tr>
+<tr><td><input type="button" id="btn" value="Done !" disabled="disabled" onclick="checkMe()"></tr>
 </table>
 </div>
 </form>

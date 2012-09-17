@@ -3,6 +3,7 @@ $(document).ready(function () {
 /************************************************************\
 *Popup arises on mouseover
 \************************************************************/
+$('tr.ontrhover').die('click');
     $('tr.ontrhover').live('mouseenter',function () {
         id = $(this).closest("div");
 		hsplit = $(this).attr('id').split("-");//splitting horse name and their id
@@ -12,10 +13,11 @@ $(document).ready(function () {
 		baitID = hsplit[3];
         loginBox = $(this).attr('id');
 	//call popup
-        CrossTickAudiopopup("#cross-tick",id,$(this).position().top-$(id).position().top,175);
+        CrossTickAudiopopup("#cross-tick",id,($(this).position().top-$(id).position().top)+15,130);
 	/************************************************************\
 	*On cross button click inside popup
 	\************************************************************/
+	$('a.cross').die('click');
 		$('a.cross').live('click', function () {
 		var datastring = "baitid=" + baitID + "&deleteBait=1";
 			$.ajax({
@@ -44,15 +46,18 @@ $(document).ready(function () {
 /************************************************************\
 *Popup arises on mouseover to add bait
 \************************************************************/
+//win bet..
+$('tr.oddsamtname td:nth-child(1)').die('click');
 	$('tr.oddsamtname td:nth-child(1)').live('click',function () {
+	$('a.close').trigger('click');
+	$('#cross-tick').fadeOut(100);
 	var win=window.flag;
 		$('input.baitmob1,input.baitmob2,input.baitmob3').val('');
 	var odd,amt;
         id = $(this).closest("div");
-		//call popup
-        //CrossTickAudiopopup("#add-bait",id,$(this).position().top,210);
 		hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
-        pophorseID = horseID = hsplit[2];
+        pophorseID =  hsplit[2];
+		horseID = hsplit[2];
         raceID = hsplit[1];		
         loginBox = $(this).attr('class');
 	//insert previous odd amount in textbox
@@ -64,18 +69,22 @@ $(document).ready(function () {
         }, function (data1) {
 			data = jQuery.parseJSON(data1);
 			if(data!='') {
+			$('input#oddsMobWin' + pophorseID).focus();
 				$('input#oddsMobWin'+pophorseID).val(data[0].odds);
 				$('input#oddsMobWin'+pophorseID).select();
-				Mousetrap.bind('esc', function() { $('a.close').trigger('click');$("#add-bait").fadeOut(50);$("tr.oddsamtname").fadeOut(50);return false; }, 'keyup');
 			}
+			else {
+				$('input#oddsMobWin' + pophorseID).focus();
+			}
+			Mousetrap.bind('esc', function() { $('a.close').trigger('click');$("#add-bait").fadeOut(50);$("tr.oddsamtname").fadeOut(50);$("tr.oddsamtname1").fadeOut(50);return false; }, 'keyup');
         });
 	//call autocomplete
 		auto("input.baitmob3");
 			$('input.baitmob1').live('blur',function() {
-			odd=$(this).val();
+			odd=$(this).val().trim();
 			});
 			$('input.baitmob2').live('blur',function() {
-			amt=$(this).val();
+			amt=$(this).val().trim();
 			});
 	//On clicking tick Image
 		$('a.tick').die('click');
@@ -104,21 +113,25 @@ $(document).ready(function () {
         }, function (data) {
 			data = jQuery.parseJSON(data);
 			if(data.check=="true") {//onInsert 
-				CallMe_Win(horseID);
-				underlineName();
+				CallMe_Win(hsplit[2]);
 			}
         });
 		$('input.baitmob1,input.baitmob2,input.baitmob3').val('');			
 			$("tr.oddsamtname").fadeOut(50);
 		});
     });
+//place bet..
+	$('tr.oddsamtname1 td:nth-child(1)').die('click');
 	$('tr.oddsamtname1 td:nth-child(1)').live('click',function () {
+	$('a.close').trigger('click');
+	$('#cross-tick').fadeOut(100);
 	var win=window.flag;
 		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');
 	var odd,amt;
         id = $(this).closest("div");
 		hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
-        pophorseID = horseID = hsplit[2];
+        pophorseID =  hsplit[2];
+		horseID = hsplit[2];
         raceID = hsplit[1];		
         loginBox = $(this).attr('class');
 	//insert previous odd amount in textbox
@@ -130,10 +143,14 @@ $(document).ready(function () {
         }, function (data1) {
 			data = jQuery.parseJSON(data1);
 			if(data!='') {
+			$('input#oddsMobPlace' + pophorseID).focus();
 				$('input#oddsMobPlace'+pophorseID).val(data[0].odds);
 				$('input#oddsMobPlace'+pophorseID).select();
-				Mousetrap.bind('esc', function() { $('a.close').trigger('click');$("#add-bait").fadeOut(50);$("tr.oddsamtname1").fadeOut(50);return false; }, 'keyup');
 			}
+			else {
+				$('input#oddsMobPlace' + pophorseID).focus();
+			}
+			Mousetrap.bind('esc', function() { $('a.close').trigger('click');$("#add-bait").fadeOut(50);$("tr.oddsamtname").fadeOut(50);$("tr.oddsamtname1").fadeOut(50);return false; }, 'keyup');
         });
 	//call autocomplete
 		auto("input.baitmob33");
@@ -170,8 +187,7 @@ $(document).ready(function () {
         }, function (data) {
 			data = jQuery.parseJSON(data);
 			if(data.check=="true") {//onInsert 
-				CallMe_Place(horseID);
-				underlineName();
+				CallMe_Place(hsplit[2]);
 			}
         });
 		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');		

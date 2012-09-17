@@ -126,21 +126,29 @@ if(isset($forDeletingBait)) {
 *Store bait details
 \************************************************************/
 function store_bait($odds,$bait_amount,$member_id,$horse_id,$race_id,$win_or_place ) {
-    if($odds!='') {
-        if($bait_amount!='') {
-            if($member_id!='') {
-                $bait = R::dispense(BAIT_TABLE);	//Creating a table if not exists
-				$bait->odds = $odds;
-				$bait->bait_amount = $bait_amount;
-				$bait->member_id=$member_id;
-				$bait->horse_id=$horse_id;
-				$bait->race_id=$race_id;
-				$bait->win_or_place=$win_or_place;
-				$id = R::store($bait);
-				$col1=array("check" => "true");
-				$col2=R::getAll("select max(person.id) 'pid',max(bait.id) 'bid' from ".PERSON_TABLE.",".BAIT_TABLE);
-				$column=array_merge($col1, $col2);
-				echo json_encode($column);
+    if(preg_match("/^[0-9]*\.[0-9]+$/",$odds)) {
+        if(preg_match("/^[0-9]+$/",$bait_amount)) {
+            if(preg_match("/^[0-9]+$/",$member_id)) {
+				if(preg_match("/^[0-9]+$/",$horse_id) && preg_match("/^[0-9]+$/",$race_id)) {
+					if(preg_match("/^[0-9]+$/",$win_or_place)) {
+						$bait = R::dispense(BAIT_TABLE);	//Creating a table if not exists
+						$bait->odds = $odds;
+						$bait->bait_amount = $bait_amount;
+						$bait->member_id=$member_id;
+						$bait->horse_id=$horse_id;
+						$bait->race_id=$race_id;
+						$bait->win_or_place=$win_or_place;
+						$id = R::store($bait);
+						$col1=array("check" => "true");
+						$col2=R::getAll("select max(person.id) 'pid',max(bait.id) 'bid' from ".PERSON_TABLE.",".BAIT_TABLE);
+						$column=array_merge($col1, $col2);
+					echo json_encode($column);
+					}
+					else
+						echo json_encode(array(0 => 'Win Or Place Bait'));
+				}
+				else
+					echo json_encode(array(0 => 'Horse ID or Race ID is empty'));
             }
             else
                 echo json_encode(array(0 => 'Customer name empty'));
@@ -169,7 +177,7 @@ function retrieve_bait_person($horse_id,$race_id,$w_or_p) {
 *Retrieving baiting profit&loss details
 \************************************************************/
 function retrieve_profit_loss($horse_id,$race_id,$w_or_p) {
-    $column=R::getAll("select sum( bait_amount ) 'total', sum(( bait_amount * odds)+ bait_amount ) 'out' from ".BAIT_TABLE." where horse_id =".$horse_id.' and race_id='.$race_id.' and win_or_place='.$w_or_p.' and member_id IN (select id from '.PERSON_TABLE.')');
+    $column=R::getAll("select sum( bait_amount ) 'total', sum(( bait_amount * odds)+ bait_amount ) 'out',(SELECT sum(bait_amount) FROM ".BAIT_TABLE." WHERE race_id=".$race_id." and win_or_place=1) 'winc',(SELECT sum(bait_amount) FROM ".BAIT_TABLE." WHERE race_id=".$race_id." and win_or_place=0) 'placec' from ".BAIT_TABLE." where horse_id =".$horse_id." and race_id=".$race_id." and win_or_place=".$w_or_p." and member_id IN (select id from ".PERSON_TABLE.")");
     echo json_encode( $column);
 }
 /************************************************************\
@@ -198,21 +206,60 @@ function delete_bait($bait_id) {
 *To update bait odds
 \************************************************************/
 function update_bait_odds($bait_id,$bait_odds) {
-	$column=R::exec("UPDATE ".BAIT_TABLE." SET odds=".$bait_odds." where id=".$bait_id);
-	echo "Updated".$bait_id.":".$bait_odds;
+	if(preg_match("/^[0-9]*\.[0-9]+$/",$bait_odds)) {
+		if(preg_match("/^[0-9]+$/",$bait_id)) {
+			$column=R::exec("UPDATE ".BAIT_TABLE." SET odds=".$bait_odds." where id=".$bait_id);
+			echo json_encode(array(0 => "Updated",1=> $bait_odds));
+			die();
+		}
+		else
+            echo json_encode(array(0 => 'Bet ID empty'));
+	}
+    else
+        echo json_encode(array(0 => 'Odds empty'));
 }
 /************************************************************\
 *To update bait amount
 \************************************************************/
 function update_bait_amount($bait_id,$bait_amount) {
-	$column=R::exec("UPDATE ".BAIT_TABLE." SET bait_amount=".$bait_amount." where id=".$bait_id);
-	echo "Updated".$bait_id.":".$bait_amount;
+	if(preg_match("/^[0-9]+$/",$bait_amount)) {
+		if(preg_match("/^[0-9]+$/",$bait_id)) {
+			$column=R::exec("UPDATE ".BAIT_TABLE." SET bait_amount=".$bait_amount." where id=".$bait_id);
+			echo json_encode(array(0 => "Updated",1=> $bait_amount));
+			die();
+		}
+		else
+            echo json_encode(array(0 => 'Bet ID empty'));
+	}
+    else
+        echo json_encode(array(0 => 'Bet Amount empty'));
 }
 /************************************************************\
 *To update member name
 \************************************************************/
 function update_person_ID($member_id_old,$member_id_new,$horse_id,$race_id,$odds,$amt) {
-	$column=R::exec("UPDATE ".BAIT_TABLE." SET member_id='".$member_id_new."' where odds=".$odds." and bait_amount=".$amt." and member_id=".$member_id_old." and horse_id=".$horse_id." and race_id=".$race_id);
-	echo "Updated".$member_id.":".$member_name;
+	if(preg_match("/^[0-9]+$/",$member_id_old)) {
+		if(preg_match("/^[0-9]+$/",$member_id_new)) {
+			if(preg_match("/^[0-9]+$/",$horse_id) && preg_match("/^[0-9]+$/",$race_id)) {
+				if(preg_match("/^[0-9]*\.[0-9]+$/",$odds)) {
+					if(preg_match("/^[0-9]+$/",$amt)) {
+						$column=R::exec("UPDATE ".BAIT_TABLE." SET member_id='".$member_id_new."' where odds=".$odds." and bait_amount=".$amt." and member_id=".$member_id_old." and horse_id=".$horse_id." and race_id=".$race_id);
+						echo json_encode(array(0 => "Updated",1 => $member_id_new));
+						die();
+					}
+					else
+						echo json_encode(array(0 => 'Amount Empty'));
+				}
+				else
+					echo json_encode(array(0 => 'Odds Empty'));
+			}
+			else
+				echo json_encode(array(0 => 'Horse ID Or Race ID is Empty'));
+		}
+		else
+			echo json_encode(array(0 => 'New Memeber ID Empty'));
+	}
+	else
+        echo json_encode(array(0 => 'Old Memeber ID Empty'));
 }
 ?>

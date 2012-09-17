@@ -4,10 +4,10 @@
 \************************************************************/
 error_reporting(1);
 define("DB_TYPE","mysql");
-define("DB_NAME","devbroth_horse");
+define("DB_NAME","horserace");
 define("HOST","localhost");
-define("USERNAME","devbroth_common");
-define("PASSWORD","common123");
+define("USERNAME","root");
+define("PASSWORD","");
 define("BAIT_TABLE","bait");
 define("HORSE_TABLE","horse");
 define("PERSON_TABLE","person");

@@ -6,10 +6,10 @@ Start Bait !
 <link href="../css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <?php
-$sel=$_POST['rsel'];
+$sel=$_GET['rsel'];
 if($sel!=0) {
 $dat=explode( '-', $sel );
-echo "<div id='bookeddetails'><center><span id='raceid' class='profitloss'><table><tr><span id='bookedmember'><p> Booked Customer Details </p></span></tr><tr><td>Race: </td><td id='race'>".$dat[0]."</td><td>Time: </td><td id='raceTime'>".$dat[1]."</td></tr></table></span></center></div>";
+echo "<div id='bookeddetails'><center><span id='raceid' class='profitloss'><table><tr><span id='bookedmember'><p> Booked Customer Details </p></span></tr><tr><td>Race: </td><td id='race'>".$dat[0]."</td><td>Time: </td><td id='raceTime'>".$dat[1]."</td></tr></table></span></center></div><a id=crosstd1 href='index.html' class='btn'>Home !</a><br><br><a id=crosstd2 href='../select.php' class='btn'>Back !</a><br><br>";
 }
 else {
 echo "Sorry Select the RaceID";
@@ -29,82 +29,72 @@ $(document).ready(function () {
 	auto("#mid");
 	window.flag=0;
 	window.mid=[];
+	$('input.baitmob1,input.baitmob11,input.baitmob2,input.baitmob22,input.baitmob3,input.baitmob33').live('keydown',function(e) {
+		if(e.keyCode==17) {
+			$(this).trigger('blur');
+		}
+		if(e.keyCode==27) {
+			$("tr.oddsamtname").fadeOut(50);
+			$("tr.oddsamtname1").fadeOut(50);
+		}
+	});
 });
 function auto(id) {
-var src,key='',lft=20;
-var arr,txt='';
-$(id).die('keydown');
-$(id).live('keydown',function (e) {
-	if(e.keyCode==39){
-		$(this).val($("a.ui-corner-all:first").text());
-		$("#suggestion-text").fadeOut(50);
-		}
-	if(e.keyCode==37)
-		$("#suggestion-text").fadeOut(50);
-	if(e.keyCode==8) {
-	if($(this).val().length==0){
-		txt='';
-		$("#suggestion-text").html("<p>"+txt+"</p>");
-		$("#suggestion-text").fadeOut(50);
-		arr=[];
-		}
-	}
-	if($(this).val().length==0){
-		$("#suggestion-text").fadeOut(50);
-		arr=[];
-		}
-	$( id ).autocomplete({
-		source:arr,
-		});
-		arr=[];
-	});
-	if($(id).val().length==0){
-		$("#suggestion-text").fadeOut(50);
-		arr=[];
-		}
+var arr,key='';
 $(id).die('keypress');
 $(id).live('keypress',function (e) {
 		arr = [];
 		if(e.keyCode==13 || e.keyCode==9){
 		arr = [];
-		$("#suggestion-text").fadeOut();
-		window.mid=$(this).val().split(".");//splitting member name and their id
-		$('a.tick').trigger('click');
+		window.mid=$(this).val().trim().split(":");//splitting member name and their id
+			if($($(this).closest("table").children("tbody").children("tr").children("td")[0]).children("input").val().trim().match(/^[0-9]*\.[0-9]+$/g) && (($($(this).closest("table").children("tbody").children("tr").children("td")[0]).children("input").val()<1) && ($($(this).closest("table").children("tbody").children("tr").children("td")[0]).children("input").val())>0)){
+				if($($(this).closest("table").children("tbody").children("tr").children("td")[1]).children("input").val().trim().match(/^[0-9]+$/g) && $($(this).closest("table").children("tbody").children("tr").children("td")[1]).children("input").val().trim()>0) {
+					if(($(this).val().trim().match(/^[0-9]*[0-9]*([0-9]\.)*[a-zA-Z]+$/g)) || ($(this).val().trim().match(/^[0-9]*[0-9]*([0-9]\.)*[a-zA-Z]+:[0-9]+$/g))){
+						var find="pid="+mid[1]+"&pname="+mid[0],found=2;
+						if(mid[1]) {
+							$.ajax({//retrievePerson triggers the function call in server side to retrieve the baiting person details
+							url: '../person.php',
+							data:find,
+							type: "POST",
+							async: false,
+							success: function (data) {
+							if(data=="not found"){
+								found=1;
+							}
+							else if(data=="found"){
+								found=2;
+							}
+							}
+							});
+							if(found==2) {
+								$('a.tick').trigger('click');
+							}
+							else {
+								CrossTickAudiopopup("#suggestion-name",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+10,125);
+								setTimeout(function(){$("#suggestion-name").fadeOut()},1000);
+							}
+						}
+						else {
+							$('a.tick').trigger('click');
+						}
+					}
+					else {
+						CrossTickAudiopopup("#suggestion-name",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+10,125);
+						setTimeout(function(){$("#suggestion-name").fadeOut()},1000);
+					}
+				}
+				else {
+					CrossTickAudiopopup("#suggestion-bait",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+10,60);
+					setTimeout(function(){$("#suggestion-bait").fadeOut()},1000);
+				}
+			}
+			else {
+				CrossTickAudiopopup("#suggestion-odds",$(this).closest("div"),($(this).closest("table").position().top-$(this).closest("div").position().top)+10,15);
+				setTimeout(function(){$("#suggestion-odds").fadeOut()},1000);
+			}
 		}
 		key=this.value + String.fromCharCode(e.keyCode);
 		var dataString = "autoname=true&req="+key;
-		var len=0,qury='';
-		qury=$("a.ui-corner-all:first").text();
-		len=qury.length;
-		if(key=='' || $(this).val()=='') {
-		txt='';
-		$("#suggestion-text").html("<p>"+txt+"</p>");
-		$("#suggestion-text").fadeOut(50);
-		arr=[];
-		}
-		else
-		txt=qury.substring(key.length,len);
-		if(e.keyCode==8) {
-			if($(this).val().length==0){
-				txt='';
-				$("#suggestion-text").html("<p>"+txt+"</p>");
-				$("#suggestion-text").fadeOut(50);
-				arr=[];
-				}
-		}
-		$("#suggestion-text").html("<p>"+txt+"</p>");
-			var pos = $(this).position();
-			var popMargTop = pos.top+8;
-			var popMargLeft = pos.left-5+(lft++);
-			$("#suggestion-text").css({
-			'top': popMargTop,
-			'left': popMargLeft,
-			'opacity':0.8,
-			'width':((len-key.length-1)*5)+'px'
-			});
-			$("#suggestion-text p").css({
-			'margin-top':-2+'px'
-			});
 		if(key!='') {
 		$.ajax({
         url: '../bait.php',
@@ -115,11 +105,7 @@ $(id).live('keypress',function (e) {
             src = jQuery.parseJSON(data2);//this finds the member name and id for auto complete
 			arr=[];
 			for (i in src)
-				arr[i]=src[i].name+"."+src[i].id;
-			if(arr!='')
-			$("#suggestion-text").fadeIn();
-			else
-			$("#suggestion-text").fadeOut(50);
+				arr[i]=src[i].name+":"+src[i].id;
 			$( id ).autocomplete({
 			source:arr,
 		});
@@ -176,8 +162,14 @@ $(id).live('keypress',function (e) {
 		</tr></table>
     </form>
 </div>
-<div id="suggestion-text" class="popup3">
-		<p id="suggest"></p>
+<div id="suggestion-odds" class="popup3">
+	<p id="suggest">Check Odds</p>
+</div>
+<div id="suggestion-bait" class="popup3">
+	<p id="suggest">Check Amount</p>
+</div>
+<div id="suggestion-name" class="popup3">
+	<p id="suggest">Check Name</p>
 </div>
 </body>
 </html>
