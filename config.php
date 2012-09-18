@@ -2,7 +2,6 @@
 /************************************************************\
 *this function stores the configuration details
 \************************************************************/
-error_reporting(1);
 define("DB_TYPE","mysql");
 define("DB_NAME","horserace");
 define("HOST","localhost");
