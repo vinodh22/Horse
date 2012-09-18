@@ -3,6 +3,9 @@ $(document).ready(function () {
 /************************************************************\
 *Popup arises on button click
 \************************************************************/
+	$('a.btn').live('mouseenter', function () {
+		$('#cross-tick').fadeOut(100);
+	});
     $('a.btn').live('click', function () {
 	$('#cross-tick').fadeOut(100);
 		$('#odd,#amt,#mid').val('');

@@ -118,9 +118,6 @@ function inOut(race_id2, horse_id2,wp) {
     });
     return bp;
 }
-function riskOnAllHorse() {
-
-}
 /************************************************************\
 *Updating baiting odds
 \************************************************************/

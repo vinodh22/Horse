@@ -49,23 +49,24 @@ $('tr.ontrhover').die('click');
 //win bet..
 $('tr.oddsamtname td:nth-child(1)').die('click');
 	$('tr.oddsamtname td:nth-child(1)').live('click',function () {
+	var Horse_ID=$($(this).closest(".thumbnail").children("a")[0]).text();
 	$('a.close').trigger('click');
 	$('#cross-tick').fadeOut(100);
 	var win=window.flag;
 		$('input.baitmob1,input.baitmob2,input.baitmob3').val('');
-	var odd,amt;
+	var odd=0,amt=0;
         id = $(this).closest("div");
-		hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
-        pophorseID =  hsplit[2];
-		horseID = hsplit[2];
-        raceID = hsplit[1];		
+		//hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
+        pophorseID =  Horse_ID;
+		horseID = Horse_ID;
+        raceID = $("#race").text();		
         loginBox = $(this).attr('class');
 	//insert previous odd amount in textbox
 		$.post('../bait.php', {
             insertPrevious: "1", //inserts previous odd amount
 			flag:1,
-            horseid: horseID,
-            raceid: $("#race").text()
+            horseid: Horse_ID,
+            raceid: raceID
         }, function (data1) {
 			data = jQuery.parseJSON(data1);
 			if(data!='') {
@@ -108,12 +109,12 @@ $('tr.oddsamtname td:nth-child(1)').die('click');
             amnt: amt,
 			winplace: win,
             id: window.mid[1],//member ID
-            horseid: horseID,
+            horseid: Horse_ID,
             raceid: raceID
         }, function (data) {
 			data = jQuery.parseJSON(data);
 			if(data.check=="true") {//onInsert 
-				CallMe_Win(hsplit[2]);
+				CallMe_Win(Horse_ID);
 			}
         });
 		$('input.baitmob1,input.baitmob2,input.baitmob3').val('');			
@@ -123,23 +124,25 @@ $('tr.oddsamtname td:nth-child(1)').die('click');
 //place bet..
 	$('tr.oddsamtname1 td:nth-child(1)').die('click');
 	$('tr.oddsamtname1 td:nth-child(1)').live('click',function () {
+	var Horse_ID=$($(this).closest(".thumbnail").children("a")[0]).text();
+	raceID = $("#race").text();	
 	$('a.close').trigger('click');
 	$('#cross-tick').fadeOut(100);
 	var win=window.flag;
 		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');
 	var odd,amt;
         id = $(this).closest("div");
-		hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
-        pophorseID =  hsplit[2];
-		horseID = hsplit[2];
-        raceID = hsplit[1];		
+		//hsplit = $(this).closest("tr").attr('id').split("-");//splitting horse name and their id
+        pophorseID =  Horse_ID;
+		horseID = Horse_ID;
+        raceID = raceID;		
         loginBox = $(this).attr('class');
 	//insert previous odd amount in textbox
 		$.post('../bait.php', {
             insertPrevious: "1", //inserts previous odd amount
 			flag:0,
-            horseid: horseID,
-            raceid: $("#race").text()
+            horseid: Horse_ID,
+            raceid: raceID
         }, function (data1) {
 			data = jQuery.parseJSON(data1);
 			if(data!='') {
@@ -176,18 +179,19 @@ $('tr.oddsamtname td:nth-child(1)').die('click');
 			}
 			});
 		}
+		
 		$.post('../bait.php', {
             save: "1", //save triggers the function call in server side to save the bait details
             odd: odd,
             amnt: amt,
 			winplace: win,
             id: window.mid[1],//member ID
-            horseid: horseID,
+            horseid: Horse_ID,
             raceid: raceID
         }, function (data) {
 			data = jQuery.parseJSON(data);
 			if(data.check=="true") {//onInsert 
-				CallMe_Place(hsplit[2]);
+				CallMe_Place(Horse_ID);
 			}
         });
 		$('input.baitmob11,input.baitmob22,input.baitmob33').val('');		

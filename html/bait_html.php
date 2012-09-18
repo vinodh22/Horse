@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
 <head>
 <title>
-Start Bait !
+Start Bet !
 </title>
 <link href="../css/jquery-ui-1.8.23.custom.css" rel="stylesheet" type="text/css">
 <link href="../css/style.css" rel="stylesheet" type="text/css">
